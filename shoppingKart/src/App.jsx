@@ -1,11 +1,14 @@
-import NavBar from "./components/NavBar"
-import Catalog from "./components/Catalog"
+import Header from "./components/header"
+import Catalog from "./components/catalog"
+import Kart from "./components/kart"
+
 function App() {
 
   return (
     <>
-      <NavBar/>
+      <Header/>
       <Catalog/>
+      <Kart/>
     </>
   )
 }
