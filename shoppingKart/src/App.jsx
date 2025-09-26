@@ -1,5 +1,5 @@
 import Header from "./components/header"
-import Catalog from "./components/catalog"
+import Catalog from "./components/Catalog"
 import Kart from "./components/kart"
 
 function App() {
@@ -7,8 +7,7 @@ function App() {
   return (
     <>
       <Header/>
-      <Catalog/>
-      <Kart/>
+      <Catalog/>   
     </>
   )
 }
