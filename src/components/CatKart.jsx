@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import Catalog from './Catalog'
 import Kart from './kart'
+import AddItems from './addItems';
 import camera from '../assets/camera.png';
 import micro from '../assets/micro.png';
 import lens from '../assets/lens.png';
@@ -18,21 +19,45 @@ export default function CatKart() {
 
      const add = (id) => {
 
-        const productsCopy = [...products]
-        const product = productsCopy.find((p)=>(p.id == id))
-        const productsKartCopy = [...productKart, product]
+      const wantedProduct = products.find((p) => p.id == id);
+      const inStock = wantedProduct.cantidad;
 
-        setProductKart(productsKartCopy)
+      if (inStock > 0){
+        const updatedProducts = products.map((p) => p.id == id ? { ...p, cantidad: p.cantidad - 1 } : p);
+        setProducts(updatedProducts);
+
+        const existing = productKart.find((p) => p.id == id);
+        const productsKartCopy = [...productKart];
+
+        if (existing) {
+          // Si ya existe, solo incrementamos su cantidad en el carrito
+          productsKartCopy.map((p) => (p.id == id ? p.cantidad = p.cantidad + 1  : p));
+          setProductKart(productsKartCopy);
+        } else {
+          // Si no está, lo agregamos con cantidad 1
+          const product = products.find((p) => p.id == id);
+          setProductKart([...productKart, { ...product, cantidad: 1 }]);
+        }
+
+      } else {
+        alert(`Ya no hay ` + wantedProduct.nombre + ` en Stock`);
+      }
+
     }
 
-    const del = () => {
+    const del = (id) => {
+        setProductKart(productKart.filter((p) => p.id !== id));
         
+        const productInKart = productKart.find((p)=>p.id == id);
+        const updatedProducts = products.map((p) => p.id === id ? { ...p, cantidad: p.cantidad + productInKart.cantidad } : p);
+        setProducts(updatedProducts)
     }
 
   return (
     <div>
-        <Catalog products={products} onClick={add} />
-        <Kart products={productKart} /> 
+        <AddItems setProducts={setProducts} products={products}/>
+        <Catalog products={products} onClick={add}/>
+        <Kart products={productKart} onClick={del}/> 
     </div>
   )
 }

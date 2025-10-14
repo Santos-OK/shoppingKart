@@ -22,9 +22,9 @@ export default function Catalog({products, onClick}) {
             <p className="text-sm text-gray-400 italic text-center">{product.description}</p>
             <p className="text-lg text-indigo-500 font-semibold text-center">{product.nombre}</p>
             <p className="text-sm text-indigo-300 text-center">Cantidad: {product.cantidad}</p>
-            <button onClick={()=>(onClick(product.id))} className='bg-gradient-to-tl from-purple-500 to-indigo-500 text-white px-6 py-2 rounded-lg shadow-md flex text-center items-center
-                                hover:bg-indigo-500 active:scale-95 transition-all duration-150 ease-in-out mt-2 mx-auto cursor-pointer' >
-              ADD
+            <button onClick={()=>(onClick(product.id))} className=' bg-gray-500 text-white px-6 py-2 rounded-lg shadow-md flex text-center items-center
+                                hover:bg-gradient-to-tl from-purple-500 to-indigo-500 active:scale-95 transition-all duration-150 ease-in-out mt-2 mx-auto cursor-pointer' >
+              + Añadir al carrito
             </button>
           </div>
         </div>
