@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import {useProducts} from "../context/productsContext"
 
 export default function AddItems({products, setProducts}) {
+
+    const {theme, setTheme} = useProducts;
 
     const [visible, setVisible] = useState(false)
 
@@ -34,7 +37,7 @@ export default function AddItems({products, setProducts}) {
     <div>
         <div className='flex justify-center'>
             <div className='flex flex-wrap bg-blue-400 w-8/12 p-2 justify-center gap-6 m-2 rounded-full'>
-                <p>Add Items</p>
+                <p>Add Items {theme}</p>
                 <div>
                     <button onClick={()=>setVisible(!visible)} className='cursor-pointer hover:scale-105 active:scale-95 transition-all duration-150 ease-in-out '>
                         {visible?"⬆":"⬇"}

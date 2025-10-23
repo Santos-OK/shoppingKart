@@ -6,6 +6,7 @@ import AddItems from './addItems';
 import camera from '../assets/camera.png';
 import micro from '../assets/micro.png';
 import lens from '../assets/lens.png';
+import { Routes, Route } from 'react-router';
 
 export default function CatKart() {
 
@@ -55,9 +56,19 @@ export default function CatKart() {
 
   return (
     <div>
+      
+      {  /*
         <AddItems setProducts={setProducts} products={products}/>
         <Catalog products={products} onClick={add}/>
         <Kart products={productKart} onClick={del}/> 
+        */ }
+
+        <Routes>
+          <Route path='/agregar' element = {<AddItems setProducts={setProducts} products={products}></AddItems>}/>
+          <Route path='/' element = {<Catalog products={products} onClick={add}></Catalog>}/>
+          <Route path='/carrito' element = {<Kart products={productKart} onClick={del}></Kart>}/>
+        </Routes>
+        
     </div>
   )
 }
